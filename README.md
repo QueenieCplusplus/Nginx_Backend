@@ -45,6 +45,25 @@
 
 * keepalive 指令
 
+
+                            Moduel  |  Data |  File
+                            ________|_______|_________
+                            Registry|       |  Stack
+                            
+                            
+                                       ||                   Master Process
+                                                         /       |         \
+                                                           （實現平行處理）
+                                                     /           |            \
+                         worker threads | slave process   slave process   slave process      全域：設定允許產生的工作處理程序的數量
+                         
+                                             /||\               /||\             /||\         
+                                            / || \             / || \           / || \       事件：connections 單一工作程序能處理的最大連接數設定  65535  
+                                           /  || \            /  ||  \         /  ||  \    
+                                           
+                                        ｜｜｜｜｜｜｜ ｜｜｜｜｜｜  ｜｜｜｜｜｜ ｜｜｜｜｜｜ ｜｜   Http: 單連接請求上限數為 100                             )
+
+
 * least_conn 指令
 
   依據權重，選擇最少（網路）連接（數量）的伺服器。
