@@ -48,21 +48,21 @@
    該指令可控制網路聯結數量，保障代理伺服器的工作處理程序為後端伺服器群組開放的使用者端網路連接，為其數量做一定控管，
    與 worker_connections 有反相關，後者為單一工作處理程序與用戶端(使用者端)連接的最大上限數。
    
-       Keepalive connections can have a major impact on performance by reducing the CPU and network overhead needed to close connections.
+   Keepalive connections can have a major impact on performance by reducing the CPU and network overhead needed to close connections.
        
-       NGINX terminates all client（user-side） connections and creates separate and independent connections to the upstream servers. 
+   NGINX terminates all client（user-side） connections and creates separate and independent connections to the upstream servers. 
 
-       NGINX supports keepalives for both clients and upstream servers. 
+   NGINX supports keepalives for both clients and upstream servers. 
 
-      * keepalive_requests – 
+    * keepalive_requests – 
       
       The number of requests a client can make over a single keepalive connection. 
       The default is 100, but a much higher value can be especially useful for testing with a load‑generation tool, which generally sends a large number of requests from a single client.
 
-       * keepalive_timeout – 
+    * keepalive_timeout – 
        How long an idle keepalive connection remains open.
 
-      * keepalive – (relates to upstream keepalives)
+    * keepalive – (relates to upstream keepalives)
       
       The number of idle keepalive connections to an upstream server that remain open for each worker process. 
 
