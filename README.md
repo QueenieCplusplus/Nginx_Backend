@@ -26,6 +26,8 @@
 
 * Domain Name Jump 域名跳躍
 
+  涉及 url 重定義。
+
 * Mirroring  域名鏡像 (CDN)
 
   ![mirror](https://raw.githubusercontent.com/QueenieCplusplus/Nginx_Backend/master/mirror-server.png)
