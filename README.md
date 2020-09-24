@@ -61,6 +61,8 @@
 
     * keepalive_timeout – 
        How long an idle keepalive connection remains open.
+       
+     ![keepalive](https://raw.githubusercontent.com/QueenieCplusplus/Nginx_Backend/master/keep-alive.png)
 
     * keepalive – (relates to upstream keepalives)
       
