@@ -48,6 +48,27 @@
    該指令可控制網路聯結數量，保障代理伺服器的工作處理程序為後端伺服器群組開放的使用者端網路連接，為其數量做一定控管，
    與 worker_connections 有反相關，後者為單一工作處理程序與用戶端(使用者端)連接的最大上限數。
    
+   
+
+                            Moduel  |  Data |  File
+                            ________|_______|_________
+                            Registry|       |  Stack
+                            
+                            
+                                       ||                   Master Process
+                                                         /       |         \
+                                                           （實現平行處理）
+                                                     /           |            \
+                         worker threads | slave process   slave process   slave process      全域：設定允許產生的工作處理程序的數量
+                         
+                                             /||\               /||\             /||\         
+                                            / || \             / || \           / || \       事件：connections 單一工作程序能處理的最大連接數設定  65535  
+                                           /  ||  \           /  ||   \        /  ||  \    
+                                           
+                                        ｜｜｜｜｜｜｜ ｜｜｜｜｜｜  ｜｜｜｜｜｜ ｜｜｜｜｜｜ ｜｜   Http: 單連接請求上限數為 100                             
+
+
+   
    Keepalive connections can have a major impact on performance by reducing the CPU and network overhead needed to close connections.
        
    NGINX terminates all client（user-side） connections and creates separate and independent connections to the upstream servers. 
@@ -67,25 +88,6 @@
     * keepalive – (relates to upstream keepalives)
       
       The number of idle keepalive connections to an upstream server that remain open for each worker process. 
-
-
-
-                            Moduel  |  Data |  File
-                            ________|_______|_________
-                            Registry|       |  Stack
-                            
-                            
-                                       ||                   Master Process
-                                                         /       |         \
-                                                           （實現平行處理）
-                                                     /           |            \
-                         worker threads | slave process   slave process   slave process      全域：設定允許產生的工作處理程序的數量
-                         
-                                             /||\               /||\             /||\         
-                                            / || \             / || \           / || \       事件：connections 單一工作程序能處理的最大連接數設定  65535  
-                                           /  ||  \           /  ||   \        /  ||  \    
-                                           
-                                        ｜｜｜｜｜｜｜ ｜｜｜｜｜｜  ｜｜｜｜｜｜ ｜｜｜｜｜｜ ｜｜   Http: 單連接請求上限數為 100                             
 
 
 
