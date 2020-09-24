@@ -28,6 +28,8 @@
 
 * Mirroring  域名鏡像 (CDN)
 
+  ![mirror](https://raw.githubusercontent.com/QueenieCplusplus/Nginx_Backend/master/mirror-server.png)
+
   相同網站 LB 到多台伺服器上，並分別使用獨立的域名，其中一個為主站 Primary Server，其它為鏡像網站 Mirror Server。
   主站與鏡像網站沒有區別，故具有備援功能。
   
